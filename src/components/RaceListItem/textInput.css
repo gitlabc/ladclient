@@ -1,0 +1,12 @@
+.error {
+    color: red;
+    font-size: 12px;
+}
+
+.inputError {
+    border: solid 1px red;
+}
+
+.fieldset {
+    margin-bottom: 16px;
+}
