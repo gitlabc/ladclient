@@ -1,1 +1,1 @@
-export {default} from './RacePage.js';
+export { default } from './RacePageContainer';

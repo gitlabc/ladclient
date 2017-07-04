@@ -1,14 +1,10 @@
-import { combineReducers } from 'redux';
-
-import { routerReducer } from 'react-router-redux';
-
+import { combineReducers } from 'redux-immutable';
 import uiReducers from './uiReducers';
 import next5Reducers from './next5Reducers';
 
-const reducer = combineReducers({
+const rootReducer = combineReducers({
     ui: uiReducers,
-    next: next5Reducers,
-    reouter: routerReducer,
+    next5: next5Reducers
 });
 
-export default reducer;
+export default rootReducer;

@@ -1,25 +1,58 @@
-import 'whatwg-fetch';
+import fetch from 'isomorphic-fetch';
 import {
-    GET_NEXT5_INITIATE,
-    GET_NEXT5_SUCCESS,
-    GET_NEXT5_FAIL,
-} from '../constants/actionTypes';
+    REQUEST_NEXT5,
+    RECEIVE_NEXT5,
+    FAILED_NEXT5,
+} from './actionTypes';
 
 import {
     showSpinner,
     hideSpinner,
 } from './uiActions';
 
-export const getNext5 = () => (
-    (dispatch) => {
-        dispatch({ type: GET_NEXT5_INITIATE });
+function requestNext5() {
+    return {
+        type: REQUEST_NEXT5,
+    };
+}
+
+function receiveNext5(json) {
+    return {
+        type: RECEIVE_NEXT5,
+        payload: {
+            data: json
+        }
+    };
+}
+
+function failedNext5() {
+    return {
+        type: FAILED_NEXT5,
+    };
+}
+
+export const getNext5Races = () => {
+    return (dispatch) => {
+        dispatch(requestNext5());
         dispatch(showSpinner());
-        fetch(`http://localhost:8080/api/v1/next5?meeting=1`)
+        return fetch(`http://localhost:8080/api/v1/next5?meeting=1`)
             .then(response => response.json())
             .then((json) => {
-                dispatch({ type: GET_NEXT5_SUCCESS, payload: { data: json } });
+                if (json.status === 'Successful') {
+                    var next5 = json.updates.filter(update => {
+                        return update.type === 'next5' && update.data.length > 0;
+                    });
+                    if (next5.length) {
+                        dispatch(receiveNext5(next5[0].data));
+                        dispatch(hideSpinner());
+                        return;
+                    } 
+                }
+                dispatch(failedNext5())
                 dispatch(hideSpinner());
             })
-            .catch(() => dispatch({ type: GET_NEXT5_FAIL }));
-    }
-);
+            .catch(() => {
+                dispatch(failedNext5())
+            });
+    };
+};

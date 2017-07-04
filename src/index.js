@@ -1,38 +1,31 @@
+import 'babel-polyfill';
 import React from 'react';
 import ReactDOM from 'react-dom';
-
 import { Provider } from 'react-redux';
+import { browserHistory, Router, Route, IndexRoute } from 'react-router';
 
-import createBrowserHistory from 'history/createBrowserHistory';
-import { Route } from 'react-router';
-import { ConnectedRouter } from 'react-router-redux';
+import Main from './components/Main';
+import configureStore from './redux/store';
 
-import { fromJS } from 'immutable';
-import configureStore from './store/configureStore';
+import Next5PageContainer from './components/Next5Page';
+// import RacePageContainer from './components/RacePage';
 
-import Next5PageContainer from './containers/Next5PageContainer';
-import RacePageContainer from './containers/RacePageContainer';
+import { getNext5Races } from './redux/actions';
 
-const initialState = fromJS({
-    events: [],
-    competitors: [],
-    races:[],
-    eventId: 0
-});
-
-const history = createBrowserHistory();
-const store = configureStore(initialState);
+const store = configureStore();
 
 ReactDOM.render(
     <Provider store={store}>
-        <ConnectedRouter history={history}>
-            <div>
-                <Route exact path='/' component={Next5PageContainer} />
-                <Route path="/race" component={RacePageContainer} />
-            </div>
-        </ConnectedRouter>
+        <Router history={browserHistory}>
+            <Route path="/" component={Main}>
+                <IndexRoute component={Next5PageContainer} />
+                {/*<Route path="/result" component={RacePageContainer} />*/}
+            </Route>
+        </Router>
     </Provider>,
-    document.getElementById('app')
+    document.getElementById('root')
 );
 
-
+store.dispatch(getNext5Races()).then(() =>
+    console.log(store.getState())
+);

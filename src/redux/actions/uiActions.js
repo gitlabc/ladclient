@@ -1,8 +1,7 @@
-import { createAction } from 'redux-actions';
 import {
     SHOW_SPINNER,
     HIDE_SPINNER,
-} from '../constants/actionTypes';
+} from './actionTypes';
 
-export const showSpinner = createAction(SHOW_SPINNER);
-export const hideSpinner = createAction(HIDE_SPINNER);
+export const showSpinner = () => ({ type: SHOW_SPINNER });
+export const hideSpinner = () => ({ type: HIDE_SPINNER });

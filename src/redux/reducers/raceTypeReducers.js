@@ -1,7 +1,7 @@
 import { handleActions } from 'redux-actions';
-import { UiState } from './initialState';
+import { RaceTypeState } from './initialState';
 
-const uiReducers = handleActions({
+const raceTypeReducers = handleActions({
     SHOW_SPINNER: state => (
         state.set(
             'spinnerVisible',
@@ -14,7 +14,7 @@ const uiReducers = handleActions({
             false
         )
     ),
-}, UiState);
+}, RaceTypeState);
 
 
-export default uiReducers;
+export default raceTypeReducers;

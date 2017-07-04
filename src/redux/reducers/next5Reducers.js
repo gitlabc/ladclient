@@ -1,10 +1,12 @@
 import { handleActions } from 'redux-actions';
-import { Next5State } from '../constants/models';
+import { Next5State } from './initialState';
 
-export const next5Reducers = handleActions({
-    GET_NEXT5_SUCCESS: (state, { payload }) => (
+const next5Reducers = handleActions({
+    RECEIVE_NEXT5: (state, { payload }) => (
         state.merge({
             data: payload.data,
         })
     )
 }, Next5State);
+
+export default next5Reducers;
