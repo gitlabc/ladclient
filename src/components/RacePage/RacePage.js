@@ -1,27 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-/** Label with required field display, htmlFor, and block styling */
-function Label({htmlFor, label, required }) {
-    return (
-        <label style={{ display: 'block' }} htmlFor={htmlFor}>
-            {label} {required && <span style={{ color: 'red' }}> *</span>}
-        </label>
-    );
-}
+import MeetingBoxContainer from '../../components/MeetingBox';
+import CompetitorListContainer from '../../components/CompetitorList';
 
-Label.propTypes = {
-    /** HTML ID for associated input */
-    htmlFor: PropTypes.string.isRequired,
+const Next5Page = () => (
+    <div>
+        <MeetingBoxContainer />
+        <CompetitorListContainer />
+    </div>
+);
 
-    /** Label text */
-    label: PropTypes.string.isRequired,
-
-    /** Display asterisk after label if true */
-    required: PropTypes.bool
-};
-
-Label.defaultProps = {
-};
-
-export default Label;
+export default Next5Page;

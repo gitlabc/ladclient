@@ -1,8 +1,6 @@
 import {
     CHANGE_RACE_TYPE,
-    SHOW_SPINNER,
-    HIDE_SPINNER,
-} from '../constants/actionTypes';
+} from './actionTypes';
 
 export const changeRaceType = (raceType) => (
     {

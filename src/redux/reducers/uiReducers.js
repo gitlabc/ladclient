@@ -1,20 +1,20 @@
 import { handleActions } from 'redux-actions';
-import { UiState } from './initialState';
+import { initUiState } from './initialState';
 
 const uiReducers = handleActions({
-    SHOW_SPINNER: state => (
+    SHOW_SPINNER: (state) => (
         state.set(
             'spinnerVisible',
             true
         )
     ),
-    HIDE_SPINNER: state => (
+    HIDE_SPINNER: (state) => (
         state.set(
             'spinnerVisible',
             false
         )
     ),
-}, UiState);
+}, initUiState);
 
 
 export default uiReducers;

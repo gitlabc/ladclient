@@ -1,20 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import AppBar from 'react-toolbox/lib/app_bar';
+import { Switch, Route } from 'react-router-dom';
+import Next5Page from '../Next5Page';
+import RacePage from '../RacePage';
 
-const Main = (props) => (
-    <div>
-        <AppBar
-            title="NEXT 5 RACES"
-        />
-        <div>
-            {props.children}
-        </div>
-    </div>
+
+const Main = () => (
+    <main>
+        <Switch>
+            <Route exact path="/" component={Next5Page} />
+            <Route path="/race" component={RacePage} />
+        </Switch>
+    </main>
 );
-
-Main.propTypes = {
-    children: PropTypes.object,
-};
 
 export default Main;

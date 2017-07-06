@@ -1,1 +1,1 @@
-export { default } from './RacePageContainer';
+export { default } from './RacePage';

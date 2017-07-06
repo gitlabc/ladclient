@@ -1,1 +1,1 @@
-export {default} from './RaceTypesBox';
+export { default } from './RaceTypesBoxContainer';

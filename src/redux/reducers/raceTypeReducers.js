@@ -1,20 +1,10 @@
 import { handleActions } from 'redux-actions';
-import { RaceTypeState } from './initialState';
+import { initRaceTypeState } from './initialState';
 
 const raceTypeReducers = handleActions({
-    SHOW_SPINNER: state => (
-        state.set(
-            'spinnerVisible',
-            true
-        )
-    ),
-    HIDE_SPINNER: state => (
-        state.set(
-            'spinnerVisible',
-            false
-        )
-    ),
-}, RaceTypeState);
-
+    CHANGE_RACE_TYPE: (state, { payload }) => (
+        state.set(payload, !state.get(payload))
+    )
+}, initRaceTypeState);
 
 export default raceTypeReducers;

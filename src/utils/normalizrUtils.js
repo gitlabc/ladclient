@@ -1,8 +1,15 @@
-import {normalize, schema} from 'normalizr';
+import { normalize, schema } from 'normalizr';
 
 export function getRaceEvents(originalData) {
-    const event = new schema.Entity('events');
-    const meeting = new schema.Entity('')
-    return parseInt(totalWidth * (percent / 100), 10);
+    const eventSchema = new schema.Entity('events', {}, {
+        processStrategy: (value, parent, key) => {
+            return { ...value, meeting_id: parent.id, type: parent.type };
+        }
+    });
+    const meetingSchema = new schema.Entity('meetings', {
+        events: [eventSchema],
+    });
+    const normalizedData = normalize(originalData, [meetingSchema]);
+    return normalizedData;
 }
 

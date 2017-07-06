@@ -1,12 +1,12 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import TextInput from './TextInput';
+import RaceListItem from './RaceListItem';
 import {shallow} from 'enzyme';
 
-describe('TextInput', () => {
+describe('RaceListItem', () => {
     
     test('should toggles erro type when show/hide password clicked', () => {
-        const wrapper1 = shallow(<TextInput 
+        const wrapper1 = shallow(<RaceListItem 
             htmlId="example-optional"
             label="First Name"
             name="firstname"
@@ -16,7 +16,7 @@ describe('TextInput', () => {
 
         expect(wrapper1.find('div')).toHaveLength(1);
         
-        const wrapper2 = shallow(<TextInput 
+        const wrapper2 = shallow(<RaceListItem 
             htmlId="example-optional"
             label="First Name"
             name="firstname"
@@ -31,7 +31,7 @@ describe('TextInput', () => {
 
     test('should hides error by default', () => {
         const tree = renderer.create(
-            <TextInput
+            <RaceListItem
                 htmlId="example-optional"
                 label="First Name"
                 name="firstname"
@@ -45,7 +45,7 @@ describe('TextInput', () => {
 
     test('should shows error when error is set', () => {
         const tree = renderer.create(
-            <TextInput
+            <RaceListItem
                 htmlId="example-optional"
                 label="First Name"
                 name="firstname"

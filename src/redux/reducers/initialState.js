@@ -1,20 +1,29 @@
 import Immutable from 'immutable';
 
-export const RaceTypeState = Immutable.fromJS({
-    Thoroughbred: true,
-    Greyhounds: true,
-    Harness: true,
+export const initRaceTypeState = Immutable.fromJS({
+    T: true, //Thoroughbred
+    G: true, //Greyhounds
+    H: true, //Harness
 });
 
+export const initSelectRaceState = Immutable.fromJS({
+    eventId: 0,
+    meetingId: 0,
+    competitors: [],
+});
 
-export const UiState = Immutable.fromJS({
+export const initTimerState = Immutable.fromJS({
+    fetchTimerStop: false,
+    fetchTimestamp: 0,
+    updateTimerStop: false,
+    updateTimestamp: 0,
+});
+
+export const initUiState = Immutable.fromJS({
     spinnerVisible: false,
 });
 
-export const Next5State = Immutable.fromJS({
-    data: {},
-});
-
-export const RaceState = Immutable.fromJS({
-    data: {},
+export const initNext5State = Immutable.fromJS({
+    events: {},
+    meetings: {},
 });

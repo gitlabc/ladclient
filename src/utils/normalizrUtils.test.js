@@ -1,13 +1,13 @@
-import {getRaceEvents} from './normalizrUtils';
+import { normalize, schema } from 'normalizr';
+import { getRaceEvents } from './normalizrUtils';
 
-import * as meetings from './meetings.json';
+import * as meetingsPackage from './meetings.json';
 
 describe('getRaceEvents', () => {
-    
+
     test('should return a flat events', () => {
-        console.log(meetings.updates[0]);
-        
-        expect(true).toEqual(true);
+        let meetings = meetingsPackage.updates[0].data;
+        let events = getRaceEvents(meetings);
+        expect(events).toMatchSnapshot();
     });
-    
 });

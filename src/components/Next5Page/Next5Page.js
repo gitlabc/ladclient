@@ -1,18 +1,13 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 
-import RaceTypesBox from '../../components/RaceTypesBox';
-// import RaceList from '../../components/RaceList';
+import RaceTypesBoxContainer from '../../components/RaceTypesBox';
+import RaceListContainer from '../../components/RaceList/';
 
-const Next5Page = props => (
+const Next5Page = () => (
     <div>
-        <RaceTypesBox data={props.data} userId={props.location.query.userId} />
-        {/*<RaceList />*/}
+        <RaceTypesBoxContainer />
+        <RaceListContainer />
     </div>
 );
-
-Next5Page.propTypes = {
-    data: PropTypes.object,
-};
 
 export default Next5Page;

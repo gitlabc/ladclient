@@ -1,41 +1,35 @@
+import styles from './styles.css';
+
 import React, { Component } from 'react';
-import PropTypes from 'prop-types'; 
+import PropTypes from 'prop-types';
 
-class ProgressBar extends Component {
-    getColor = (percent) => {
-        if (this.props.percent === 100) {
-            return 'green';
-        }else{
-            return this.props.percent > 50 ? 'lightgreen' : 'red';
-        }
-    }
+import RaceListItem from '../RaceListItem';
 
-    getWidthAsPercentOfTotalWidth = () => {
-        return parseInt(this.props.width * (this.props.percent /100), 10);
-    }
-
+class RaceList extends Component {
     render() {
-        const {percent, width, height } = this.props;
+        const { keys, races, onRaceClick} = this.props;
+        let now = Math.round((new Date()).getTime() / 1000);
         return (
-            <div style={{border: 'solid 1px lightgray', width:width}}>
-                <div style={{
-                    width: this.getWidthAsPercentOfTotalWidth(),
-                    height,
-                    backgroundColor: this.getColor(percent)
-                }} ></div>
+            <div className={styles.rl}>
+                {
+                    keys.map((id) => {
+                        return (
+                            <RaceListItem key={id} event={races[id]} now={now} onRaceClick={onRaceClick} />
+                        )
+                    }, this)
+                }
             </div>
         );
     }
 }
 
-ProgressBar.propTypes = {
-    percent: PropTypes.number.isRequired,
-    width: PropTypes.number.isRequired,
-    height: PropTypes.number,
+RaceList.propTypes = {
+    keys: PropTypes.any.isRequired,
+    races: PropTypes.object.isRequired,
+    startUpdate: PropTypes.func.isRequired,
+    stopUpdate: PropTypes.func.isRequired,
+    onRaceClick: PropTypes.func.isRequired,
+    history: PropTypes.object.isRequired,
 };
 
-ProgressBar.defaultProps = {
-    height: 5
-};
-
-export default ProgressBar;
+export default RaceList;

@@ -10,6 +10,10 @@ import {
     hideSpinner,
 } from './uiActions';
 
+import {
+    startTimer,
+} from './timerActions';
+
 function requestNext5() {
     return {
         type: REQUEST_NEXT5,
@@ -19,9 +23,7 @@ function requestNext5() {
 function receiveNext5(json) {
     return {
         type: RECEIVE_NEXT5,
-        payload: {
-            data: json
-        }
+        payload: json,
     };
 }
 
@@ -45,8 +47,9 @@ export const getNext5Races = () => {
                     if (next5.length) {
                         dispatch(receiveNext5(next5[0].data));
                         dispatch(hideSpinner());
+                        dispatch(startTimer());
                         return;
-                    } 
+                    }
                 }
                 dispatch(failedNext5())
                 dispatch(hideSpinner());
