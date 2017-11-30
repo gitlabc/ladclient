@@ -1,6 +1,6 @@
 a React.js client for LadApi
 
-## how wo use laravel to route ReactJs
+## how to use laravel to route ReactJs
 ### add ln
 ```bash
 cd public
